@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/header.ejs') %>
+
+    <body>
+        <form>
+            <h1>Create A Daily Event:</h1>
+            <div class="em">
+                <label for="time"><i class="arrow right"></i>Time:</label>
+                <input type="text" id="time" name="time" value="ALL DAY-" readonly required>
+
+            </div>
+            <div class="pass">
+                <label for="name"><i class="arrow right"></i>Name:</label>
+                <input type="text" id="name" name="name" required placeholder="please enter an name for event">
+                <label for="location"><i class="arrow right"></i>Location:</label>
+                <input type="text" id="location" name="location" required placeholder="please enter an location for event">
+                <input type="text" id="owner" name="owner" value="<%= user._id%>" hidden="true">
+            </div>
+            <button class="btn">Create Event</button>
+        </form>
+
+        <script>
+            const form = document.querySelector('form')
+            form.addEventListener('submit', async (e) => {
+                const time = form.time.value
+                const item = form.name.value
+                const location = form.location.value
+                const owner = form.owner.value
+                try {
+                    await fetch('/allday', {
+                        method: 'POST',
+                        body: JSON.stringify({ time, item, location, owner }),
+                        headers: { 'Content-Type': 'application/json' }
+                    })
+                    window.location.href = '/events'
+                } catch (e) {
+                    console.log(e)
+                }
+            })
+        </script>
+
+    </body>
+    <%- include('./partials/footer.ejs') %>
+
+</html>

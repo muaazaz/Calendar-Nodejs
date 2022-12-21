@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/header') %>
+
+    <body>
+        <form>
+            <h1>Log In:</h1>
+            <div class="em">
+                <label for="email"><i class="arrow right"></i>Email:</label>
+                <input type="text" id="email" name="email" placeholder="please enter an email">
+                <div class="email error"></div>
+            </div>
+            <div class="pass">
+                <label for="password"><i class="arrow right"></i>Password:</label>
+                <input type="password" id="password" name="password" placeholder="please enter a password">
+                <div class="password error"></div>
+            </div>
+            <button class="btn">Log In</button>
+        </form>
+
+        <script>
+            const form = document.querySelector('form')
+            const emailerror = document.querySelector('.email.error')
+            const passworderror = document.querySelector('.password.error')
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault()
+
+                emailerror.textContent = ''
+                passworderror.textContent = ''
+
+                const email = form.email.value
+                const password = form.password.value
+
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password }),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                console.log('reqfired')
+                const data = await res.json()
+                if (data.user) {
+                    window.location.href = '/events'
+                } else {
+                    emailerror.textContent = data.error.email
+                    passworderror.textContent = data.error.password
+                }
+            })
+        </script>
+
+    </body>
+    <%- include('./partials/footer') %>
+
+</html>

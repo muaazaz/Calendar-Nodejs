@@ -1,0 +1,26 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+    
+    <nav>
+        <div class="logo">
+            <a href="/">CALENDER APP</a>
+        </div>
+        <ul>
+            <% if(!user){ %>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Log In</a></li>
+            <li><a href="/">Home Page</a></li>
+            <% } else { %>
+            <h1 class="email">Welcome! : <%= user.email %></h1>
+            <li><a href="/allday">Create A Daily Event</a></li>
+            <li><a href="/create_event">Create Event</a></li>
+            <li><a href="/logout">Log Out</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</head>
