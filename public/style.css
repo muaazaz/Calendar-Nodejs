@@ -192,6 +192,7 @@ h1 {
 .events {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     line-height: 1px;
     text-indent: 10px;
     text-align: start;
@@ -319,9 +320,9 @@ form>h1 {
     border: 2px solid black;
     border-radius: 2px;
     color: white;
-    min-width: 5%;
-    min-height: 5%;
-    height: auto;
+    height: 1rem;
+    min-width: 5rem;
+    max-width: 10%;
     padding: 3px;
     font-weight: 900;
 }
@@ -336,9 +337,9 @@ form>h1 {
     border: 2px solid black;
     border-radius: 2px;
     color: white;
-    min-width: 5%;
-    min-height: 5%;
-    height: auto;
+    height: 1rem;
+    min-width: 5rem;
+    max-width: 10%;
     padding: 2px;
     font-weight: 900;
 }

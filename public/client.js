@@ -155,6 +155,7 @@ function genevents(start, end, itm, loca, id) {
     loc.innerHTML = loca;
 
     evnt.style.backgroundColor = "white";
+    evnt.style.width = "auto"
     evnt.style.zIndex = "1";
 
 
