@@ -155,7 +155,7 @@ function genevents(start, end, itm, loca, id) {
     loc.innerHTML = loca;
 
     evnt.style.backgroundColor = "white";
-    evnt.style.width = "auto"
+    evnt.style.width = "100%"
     evnt.style.zIndex = "1";
 
 
@@ -205,7 +205,7 @@ function calTimeSpan(start, end, evnt) {
         hgt = 4;
     }
     else {
-        hgt = (Math.round((diff * 4) * 2)+1);
+        hgt = Math.round((diff * 4) * 2);
     }
 
     evnt.style.height = hgt.toString() + "rem";
@@ -222,24 +222,8 @@ function storeevents(evnt) {
 
 //Checking where ovelap occurs
 function overlapandStore(evnt) {
-    // let diff2 = false;
-
-    // arr.forEach((element) => {
-    //     diff2 = (element.end - evnt.start < 0 && element.start != evnt.start)
-    //     let diff = element.start == evnt.start
-
-    //     if (diff2) {
-    //         tim1 = element.start;
-    //         tim = document.getElementById(element.start);
-    //     }
-    // });
-    if(evnt.start-9 < 3){
-        tim1 = 9;
-        tim = document.getElementById('9');
-    }else{
-        tim1 = 12;
-        tim = document.getElementById('12');
-    }
+            tim1 = 9;
+            tim = document.getElementById('9');
 
 }
 //Fixing the overlapping

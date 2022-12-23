@@ -75,6 +75,7 @@ li>a:hover {
     opacity: 95%;
     min-height: 80rem;
     min-width: 80rem;
+    width:auto;
     z-index: 1;
 }
 
@@ -104,7 +105,7 @@ li>a:hover {
 .evt {
     display: flex;
     margin: 0.2% 0;
-    width: 60rem;
+    min-width: 60rem;
     height: 90%;
     background-color: white;
     border-left: 1rem solid rgb(0, 191, 0);

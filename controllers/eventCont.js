@@ -15,7 +15,7 @@ const create_event = async(req, res)=>{
 }
 const schedule = async(req, res)=>{
     try {
-        const events =await Event.find({owner: req.user._id})
+        const events =await Event.find({owner: req.user._id}).sort({strt:'asc'})
         res.send({events})
     } catch (e) {
         console.log(e)

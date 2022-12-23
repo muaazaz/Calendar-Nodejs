@@ -38,7 +38,7 @@
                     <option value="7:00"> 7:00 </option>
                     <option value="7:30"> 7:30 </option>
                     <option value="8:00"> 8:00 </option>
-                  </select>
+                </select>
                 <label for="end_time"><i class="arrow right"></i>End Time:</label>
                 <select id="end_time" name="end_time" required>
                     <option value="9:00">9:00 </option>
@@ -64,7 +64,7 @@
                     <option value="7:00"> 7:00 </option>
                     <option value="7:30"> 7:30 </option>
                     <option value="8:00"> 8:00 </option>
-                  </select>
+                </select>
                 <input type="text" id="owner" name="owner" value="<%= user._id%>" hidden="true">
             </div>
             <button class="btn">Create Event</button>
@@ -73,25 +73,82 @@
         <script>
             const form = document.querySelector('form')
             form.addEventListener('submit', async (e) => {
-                if(form.start_time.value !== form.end_time.value){
+                e.preventDefault()
                 const start = form.start_time.value
                 const end = form.end_time.value
-                const item = form.name.value
-                const location = form.location.value
-                const owner = form.owner.value
-                try {
-                    await fetch('/events', {
-                        method: 'POST',
-                        body: JSON.stringify({ start, end, item, location, owner }),
-                        headers: { 'Content-Type': 'application/json' }
-                    })
-                    window.location.href = '/events'
-                } catch (e) {
-                    console.log(e)
+                const arr = start.split(':')
+                const arr1 = end.split(':')
+                const st = arr[0];
+                const en = arr[0];
+                const check = (tm) => {
+                    switch (tm) {
+                        case '1':
+                            tm = +tm + +'12'
+                            return tm
+                            break;
+                        case '2':
+                            tm = +tm + +'12'
+                            return tm
+                            break;
+                        case '3':
+                            tm = +tm + +'12'
+                            return tm
+                            break;
+                        case '4':
+                            tm = +tm + +'12'
+                            return tm
+                            break;
+                        case '5':
+                            tm = +tm + +'12'
+                            return tm
+                            break;
+                        case '6':
+                            tm = +tm + +'12'
+                            return tm
+                            break;
+                        case '7':
+                            tm = +tm + +'12'
+                            return tm
+                            break;
+                        case '8':
+                            tm = +tm + +'12'
+                            return tm
+                            break;
+                        default:
+                            break;
+                    }
                 }
-                }else{
-                    alert('Start and End Time cannot be same')
+
+                if (form.start_time.value !== form.end_time.value && !en < st) {
+
+                    const item = form.name.value
+                    const location = form.location.value
+                    const owner = form.owner.value
+                    const arr = start.split(":")
+                    arr[0] = check(arr[0])
+                    let strt = ''
+                    if (arr[1] != '00') {
+                        strt = arr[0] + '.5'
+                    } else {
+                        strt = arr[0]
+                    }
+                    
+
+
+                    try {
+                        await fetch('/events', {
+                            method: 'POST',
+                            body: JSON.stringify({ start, end, item, location, owner, strt }),
+                            headers: { 'Content-Type': 'application/json' }
+                        })
+                        window.location.href = '/events'
+                    } catch (e) {
+                        console.log(e)
+                    }
+                } else {
+                    alert('Issue In Start and End Time')
                 }
+               
             })
         </script>
 

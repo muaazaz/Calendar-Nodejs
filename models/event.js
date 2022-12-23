@@ -11,6 +11,9 @@ const eventSchema = new mongoose.Schema({
         type: String
     },owner:{
         type: mongoose.Types.ObjectId
+    },
+    strt:{
+        type:Number
     }
 })
 
