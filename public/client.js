@@ -8,8 +8,8 @@ var mrg = 0;
 var start1 = 0;
 var start2 = 0;
 var isvalid = false;
+var isOverlap = false;
 var counter = 0;
-
 
 const scd = document.querySelector('.viewevent')
 scd.addEventListener('click', async (e) => {
@@ -120,7 +120,6 @@ function createDailyevnt(Daily) {
 
 //Function TO generate events
 function genevents(start, end, itm, loca, id) {
-
     let strttime = document.getElementById(start);
 
     let evnt = document.createElement("div");
@@ -174,25 +173,17 @@ function genevents(start, end, itm, loca, id) {
         loc: loc.innerHTML
     }
 
-    //Storing events in an array as an object
-    storeevents(evntObj);
+
     //To manage overlapping
-    if (count > 0) {
-        overlapandStore(evntObj);
-        if (tim != 0) {
-            rmvOver(evntObj);
-            evnt.style.marginTop = mrg.toString() + "rem";
-            tim.appendChild(evnt);
-
-        }
-        else {
-            strttime.appendChild(evnt);
-        }
-
+    if (count > 1) {
+        isOverlap = false;
+       overlapandStore(evntObj, evnt);
     }
     else {
         strttime.appendChild(evnt);
     }
+    //Storing events in an array as an object
+    storeevents(evntObj);
     tim = 0;
     count++;
 }
@@ -221,15 +212,33 @@ function storeevents(evnt) {
 }
 
 //Checking where ovelap occurs
-function overlapandStore(evnt) {
-            tim1 = 9;
-            tim = document.getElementById('9');
-
+function overlapandStore(evnt, div) {
+    arr.forEach((element)=>{
+        if(((element.end - evnt.start) > 0 )&& (element.start != evnt.start)){
+            overlap(evnt, div, element)
+            isOverlap = true;
+        }else if (!isOverlap) {
+            noOverlap(evnt, div)
+        }
+    })
+}
+function overlap(evnt, div, element){
+    tim1 = element.start
+    tim = document.getElementById(element.start.toString());
+    rmvOver(evnt, div);
+    tim.appendChild(div);
+    return;
+}
+function noOverlap(evnt, div){
+    tim1 = evnt.start
+    tim = document.getElementById(evnt.start.toString())
+    tim.appendChild(div);
 }
 //Fixing the overlapping
-function rmvOver(evnt) {
+function rmvOver(evnt, div) {
     let diff = evnt.start - tim1;
-    mrg = Math.round((diff * 4) * 2);
+    mrg = (Math.round((diff * 4) * 2)+1.2);
+    div.style.marginTop = mrg.toString() + "rem";
     tim1 = 0;
 }
 
