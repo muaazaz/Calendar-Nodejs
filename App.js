@@ -18,7 +18,7 @@ app.use(eventRouter)
 app.use(userRouter)
 
 mongoose.set('strictQuery', true)
-mongoose.connect(process.env.DBURL).then(()=>{
+mongoose.connect(process.env.DATABASE_URI).then(()=>{
     app.listen(process.env.PORT,()=>{
         console.log('App is up in running at PORT: ' + process.env.PORT)
     })

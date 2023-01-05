@@ -10,6 +10,9 @@ const alldayeventSchema = new mongoose.Schema({
     },owner:{
         type: mongoose.Types.ObjectId
     }
+},
+{
+    timestamps:true
 })
 
 const AlldayEvent = mongoose.model('alldayevent',alldayeventSchema)

@@ -7,9 +7,9 @@ const router = express.Router()
 router.get('/create_event',controller.get_create_event)
 //To create a new event in DB
 router.post('/events', controller.create_event)
-//To render calendar page
-router.get('/schedule',auth,controller.schedule)
 //To fetch all events from db
+router.get('/schedule',auth,controller.schedule)
+//To render calendar page
 router.get('/events',auth,controller.events)
 //Form page for a new all day event
 router.get('/allday', auth,controller.get_allday_page)
